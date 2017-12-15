@@ -5,9 +5,15 @@
 -->
 <template>
   <div v-clickoutside="closeOptions">
-    <div @click="toggleOptions"><el-input :props="comboProps" v-model="selectedLabel" :icon="comboIcon"
-      placeholder="请选择" readonly="readonly" type="text">
-    </el-input></div>
+    <div @click="toggleOptions">
+      <el-input
+        :props="comboProps"
+        v-model="selectedLabel"
+        :icon="comboIcon"
+        placeholder="请选择"
+        readonly="readonly"
+        type="text"/>
+    </div>
     <div class="el-scrollbar" v-show="showOptions" :style="{'position':'absolute','z-index':'10','overflow': 'auto','width':'100%',height: panelHeight || 'auto'}">
       <el-tree
         ref="tree"

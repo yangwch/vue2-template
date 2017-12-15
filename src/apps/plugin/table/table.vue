@@ -1,29 +1,35 @@
-<!-- 表格组件，支持分页 -->
+<!--
+  表格组件，支持分页
+-->
 <template>
   <div>
-  <el-table
-    ref="table"
-    border
-    :fit="fit"
-    :stripe="stripe"
-    :data="tableData"
-    :empty-text="emptyText"
-    highlight-current-row
-    @selection-change="onSelectionChange"
-    @current-change="onCurrentChange">
-    <slot name="columns"></slot>
-  </el-table>
-  <div v-if="pagination" class="Pagination" style="text-align: left;margin-top: 10px;">
-    <el-pagination v-if="reload"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage"
-      :page-sizes="pageSizes"
-      :page-size="limit"
-      layout="total, -> ,sizes, -> , prev, pager, next"
-      :total="count">
-    </el-pagination>
-  </div>
+    <el-table
+      ref="table"
+      border
+      :fit="fit"
+      :stripe="stripe"
+      :data="tableData"
+      :empty-text="emptyText"
+      highlight-current-row
+      @selection-change="onSelectionChange"
+      @current-change="onCurrentChange">
+      <slot name="columns"/>
+    </el-table>
+    <div
+      v-if="pagination"
+      class="Pagination"
+      style="text-align: left;margin-top: 10px;">
+      <el-pagination
+        v-if="reload"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="currentPage"
+        :page-sizes="pageSizes"
+        :page-size="limit"
+        layout="total, -> ,sizes, -> , prev, pager, next"
+        :total="count"
+      />
+    </div>
   </div>
 </template>
 <style lang="less">
