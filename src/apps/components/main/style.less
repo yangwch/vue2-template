@@ -1,0 +1,40 @@
+.el-container {
+  height: 100%;
+}
+.el-header, .el-footer {
+  line-height: 60px;
+  h1 {
+    text-align: left;
+    float: left;
+    img {
+      vertical-align: sub;
+    }
+  }
+  nav {
+    float: right;
+    .el-menu-custom {
+      border: 0;
+    }
+  }
+}
+
+.el-aside {
+  text-align: left;
+}
+
+.el-main {
+  text-align: center;
+}
+
+body > .el-container {
+  margin-bottom: 40px;
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+  line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+  line-height: 320px;
+}
