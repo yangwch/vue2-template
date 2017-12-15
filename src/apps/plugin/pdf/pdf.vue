@@ -6,7 +6,7 @@
   </div>
 </template>
 <script>
-  import {PDFObject} from './../../../../static/js/pdfobject'
+  import PDFObject from './../../../../static/js/pdfobject'
   export default {
     data () {
       return {
