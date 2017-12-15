@@ -1,7 +1,5 @@
 # vue2-tempalte
 
-# vue2-start
-
 此项目是 vue + element-ui@2.+ 构建的后台管理系统
 使用了更为严格的es-lint，同样忽略了一部分规则
 
