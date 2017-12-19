@@ -16,6 +16,7 @@
     "jquery": "^3.2.1",
     "time-formater": "^1.0.1",
     "vue": "^2.5.2",
+    "vue-i18n": "^7.3.2",
     "vue-quill-editor": "^3.0.4",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"

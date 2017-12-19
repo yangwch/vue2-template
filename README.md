@@ -5,7 +5,7 @@
 
 ## 技术栈
 
-vue2 + vuex + vue-router + webpack + ES6/7 + less + element-ui
+vue2 + vuex + vue-router +vue-i18n + webpack + ES6/7 + less + element-ui
 
 
 ## 项目运行
@@ -29,7 +29,8 @@ npm run build
 # 6.带分析报告的发布
 npm run build --report
 
-访问: http://localhost:8090 （端口在文件 config/index.js 中 dev 段 port)
+访问: http://localhost:8080 （端口在文件 config/index.js 中 dev 段 port)
+示例：http://localhost:8080/#/demo
 
 ```
 
