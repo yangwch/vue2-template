@@ -6,10 +6,10 @@
         <el-form :model="loginForm" :rules="rules" ref="loginForm">
           <el-form-item prop="username">
             <!--icon定义字符串，：icon定义方法-->
-            <el-input v-model="loginForm.username"  auto-complete="off" placeholder="| 请输入用户名" :icon="userNameClass" @focus="handleUserFocus(true)" @blur="handleUserFocus(false)" @keyup.enter.native="submitForm('loginForm')"></el-input>
+            <el-input v-model="loginForm.username"  auto-complete="off" placeholder="| 请输入用户名" :prefix-icon="userNameClass" @focus="handleUserFocus(true)" @blur="handleUserFocus(false)" @keyup.enter.native="submitForm('loginForm')"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input type="password" placeholder="| 请输入密码" v-model="loginForm.password" :icon="passwordClass" @focus="handlePwdFocus(true)" @blur="handlePwdFocus(false)" @keyup.enter.native="submitForm('loginForm')"></el-input>
+            <el-input type="password" placeholder="| 请输入密码" v-model="loginForm.password" :prefix-icon="passwordClass" @focus="handlePwdFocus(true)" @blur="handlePwdFocus(false)" @keyup.enter.native="submitForm('loginForm')"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button :loading="loading" @click="submitForm('loginForm')" class="submit_btn">登录</el-button>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import {login} from '@/api/index'
+  import {login, getUsers} from '@/api/index'
   import {mapActions, mapState} from 'vuex'
   export default {
     data () {
@@ -65,24 +65,36 @@
           if (valid) {
             this.loading = true
             // 请求登录接口
-            let res = await login({ userName: this.loginForm.username, passWord: this.loginForm.password });
-            if (res.result && res.success) {
-              /* 将用户token本地缓存 */
-              this.saveUserInfo(res.result.userInfo);
+            try {
+              let res = await login({ username: this.loginForm.username, password: this.loginForm.password });
+              console.log(res)
+              // let data = await getUsers()
+
+              if (res) {
+                /* 将用户token本地缓存 */
+                this.saveUserInfo(res);
+                this.$message({
+                  type: 'success',
+                  message: '登录成功'
+                });
+                
+                this.$router.push('main')
+              } else {
+                this.$message({
+                  type: 'error',
+                  message: (res.error && res.error.message) || '用户名或密码错误'
+                });
+                this.loading = false
+              }
+            } catch (ex) {
               this.$message({
-                type: 'success',
-                message: '登录成功'
-              });
-              
-              this.$router.push('main')
-            } else {
-              this.$message({
-                type: 'error',
-                message: (res.error && res.error.message) || '用户名或密码错误'
-              });
+                  type: 'error',
+                  message: '用户名或密码错误'
+                });
               this.loading = false
             }
           } else {
+            this.loading = false
             this.$notify.error({
               title: '错误',
               message: '请输入正确的用户名密码',

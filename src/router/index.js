@@ -1,23 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import demoPlugin from '@/apps/demo/plugin'
-import login from '@/apps/views/login'
-import main from '@/apps/components/main'
-import home from '@/apps/views/home'
+import { routerMode } from './../config/env'
+const login = r => require.ensure([], () => r(require('@/apps/views/login')), 'login')
+const main = r => require.ensure([], () => r(require('@/apps/components/main')), 'main')
+const demoPlugin = r => require.ensure([], () => r(require('@/apps/demo/plugin')), 'plugin')
+const home = r => require.ensure([], () => r(require('@/apps/views/home')), 'home')
 
 Vue.use(Router)
 
-export default new Router({
+const routes = {
+  mode: routerMode,
   routes: [
     {
       path: '/',
       name: 'login',
       component: login
-    },
-    {
-      path: '/demo',
-      name: 'demoPlugin',
-      component: demoPlugin
     },
     {
       path: '/main',
@@ -32,4 +29,12 @@ export default new Router({
       ]
     }
   ]
-})
+}
+if (process.env.NODE_ENV === 'development') {
+  routes.routes.push({
+    path: '/demo',
+    name: 'demoPlugin',
+    component: demoPlugin
+  })
+}
+export default new Router(routes)

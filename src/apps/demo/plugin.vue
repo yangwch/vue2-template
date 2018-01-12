@@ -1,5 +1,7 @@
 <template>
   <div style="margin: 20px;">
+    <h1>mmbs query</h1>
+    <mmbs-list/>
     <h1>i18n</h1>
     <!-- 多语言 -->
     <el-radio-group v-model="locale" @change="onLocaleChange">
@@ -148,7 +150,11 @@
   </div>
 </template>
 <script>
+import mmbsList from './mmbsList'
 export default {
+  components: {
+    mmbsList
+  },
   data() {
     return {
       dialogVisible: false,

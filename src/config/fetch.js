@@ -1,4 +1,4 @@
-import { baseUrl } from './env'
+import { baseUrl, appId } from './env'
 
 export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
   type = type.toUpperCase();
@@ -32,6 +32,7 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 
       requestObj.open(type, url, true);
       requestObj.setRequestHeader("Content-type", "application/json; charset=utf-8");
+      requestObj.setRequestHeader('X-Mmbs-Application-Id', appId)
       requestObj.send(sendData);
       // 连接数据库
       requestObj.onreadystatechange = () => {

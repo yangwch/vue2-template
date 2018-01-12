@@ -38,6 +38,7 @@
   }
 </style>
 <script>
+  import {defPageSize} from '@/config/env'
   export default {
     props: {
       /*  列宽是否自撑开 */ 
@@ -87,7 +88,7 @@
         tableData: [],
         currentRow: null,
         offset: 0,
-        limit: 15,
+        limit: defPageSize,
         count: 0,
         currentPage: 1,
         emptyText: '暂无数据',
@@ -136,17 +137,18 @@
       },
       /*  获取数据 */ 
       async getApiData() {
-        var params = this.params;
-        params.page = this.currentPage,
-        params.rows = this.limit;
+        var params = {} // this.params
+        params.page = this.currentPage
+        params.rows = this.limit
+        params.params = this.params
         this.emptyText = '加载中。。。',
         this.tableData = [],
         this.reload = false
-        const result = await this.searchApi(params);
-        this.tableData = (result && result.result && result.result.rows) || [];
-        this.count = (result && result.result && result.result.total) || 0;
+        const result = await this.searchApi(params)
+        this.tableData = (result && result.result && result.result.rows) || []
+        this.count = (result && result.result && result.result.total) || 0
         this.emptyText = '暂无数据'
-        this.reload = true;
+        this.reload = true
       },
       /*  查询 */ 
       search(params) {

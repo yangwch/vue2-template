@@ -13,7 +13,7 @@
       <el-col :span="8">
         <slot name="buttons">&nbsp;</slot>
       </el-col>
-      <slot name="searchInput">
+      <slot name="search">
         <!--右边的搜索-->
         <el-col :span="16">
           <el-form :inline="true" :model="formData" class="form-inline right">
