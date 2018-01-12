@@ -1,19 +1,22 @@
 <template>
   <div>
-    <yt-list :title="title" :search-label="searchLabel" :search-api="searchApi" :params="formInline" ref="list">
+    <yt-list :title="title" search-field="playerName" :search-label="searchLabel" :search-api="searchApi" :search-params="formInline" ref="list">
       <!--操作按鈕-->
       <template slot="buttons">
         <el-button type="default" @click="onCreate">创建</el-button>
         <el-button type="default" @click="onEdit">修改</el-button>
         <el-button type="danger" @click="onDel">删除</el-button>
       </template>
-      <template slot="search">
+     <template slot="search">
         <el-form :inline="true" :model="formInline" style="float:right" class="form-inline right">
           <el-form-item label="用户姓名">
             <el-input v-model="formInline.playerName" placeholder="用户姓名"></el-input>
           </el-form-item>
           <el-form-item label="大于分数">
             <el-input-number v-model="formInline.minScore.value" :controls="false" :min="0" :max="100"></el-input-number>
+          </el-form-item>
+          <el-form-item label="小于分数">
+            <el-input-number v-model="formInline.maxScore.value" :controls="false" :min="0" :max="100"></el-input-number>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSearch">查询</el-button>
@@ -32,10 +35,12 @@
          label="ID">
         </el-table-column>
         <el-table-column
+         sortable
          property="attributes.playerName"
          label="用户姓名">
         </el-table-column>
         <el-table-column
+         sortable
          property="attributes.score"
          label="分数">
         </el-table-column>
@@ -73,6 +78,11 @@
             type: 'greaterThan',
             field: 'score',
             value: 0
+          },
+          maxScore: {
+            type: 'lessThan',
+            field: 'score',
+            value: 100
           }
         },
         form: {

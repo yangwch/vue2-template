@@ -1,8 +1,9 @@
 import Mmbs from 'mmbs'
-import { mmbsURL, appId } from '@/config/env'
+import { mmbsURL, appId, defPageSize, masterKey } from '@/config/env'
 
 Mmbs.initialize(appId)
 Mmbs.serverURL = mmbsURL
+Mmbs.CoreManager.set('MASTER_KEY', masterKey)
 
 export default {
   /**
@@ -29,8 +30,8 @@ export default {
   },
   /** 
    * 更新数据
-   * objectId {String} - 数据id
-   * data {Object} - 对象
+   * @param objectId {String} - 数据id
+   * @param data {Object} - 对象
   */
   update (collectionName, objectId, data) {
     var score = Mmbs.Object.extend(collectionName)
@@ -56,8 +57,8 @@ export default {
   },
   /**
    * 删除
-   * collectionName {String} - 集合名称
-   * objectId {String} - 对象id
+   * @param collectionName {String} - 集合名称
+   * @param objectId {String} - 对象id
    */
   delete (collectionName, objectId) {
     var score = Mmbs.Object.extend(collectionName)
@@ -82,12 +83,21 @@ export default {
   },
   /**
    * 查询，分页，条件
-   * collectionName {String} - 集合名称
-   * options {Object} - 选项
+   * @param collectionName {String} - 集合名称
+   * @param options {Object} - 选项
+   * @param options.params {Object} - 参数，示例：{playerName: 'Stan', minScore: {value: 60, field: 'score', type: 'greaterThan'}} 
    */
-  query (collectionName, options = {page: 1, rows: 15, params: {}}) {
+  query (collectionName, options = {page: 1, rows: defPageSize, params: {}, _order: '-createdAt'}) {
+    console.log(options)
     var score = Mmbs.Object.extend(collectionName)
     var query = new Mmbs.Query(score)
+    /* 排序 */
+    let order = options._order || '-createdAt'
+    if (order.indexOf('-') === 0) {
+      query.descending(order.replace('-', ''))
+    } else {
+      query.ascending(order)
+    }
     let paramNames = Object.getOwnPropertyNames(options.params || {})
     if (paramNames.length) {
       paramNames.map(item => {
@@ -100,7 +110,7 @@ export default {
       })
     }
     let page = options.page || 1,
-      limit = options.rows || 15,
+      limit = options.rows || defPageSize,
       skip = (page - 1) * limit
     return new Promise((resolve, reject) => {
       query.count({
@@ -127,7 +137,10 @@ export default {
       })
     })
   },
-  /* 查找列表所有记录 */
+  /**
+   * 查找列表所有记录
+   * @param collectionName {String} - 集合名称
+   */
   find (collectionName) {
     var score = Mmbs.Object.extend(collectionName)
     var query = new Mmbs.Query(score)
@@ -147,7 +160,7 @@ export default {
   },
   /**
    * 登录
-   * data {Object} - 提交对象
+   * @param data {Object} - 提交对象
    */
   login (data) {
     return new Promise((resolve, reject) => {
@@ -156,6 +169,17 @@ export default {
         error: reject
       })
     })
+  },
+  /**
+   * 统计数据
+   * @param collectionName {String} - 集合名称
+   * @param options {String} - 选项
+   */
+  agg (collectionName, options) {
+    var score = Mmbs.Object.extend(collectionName)
+    var query = new Mmbs.Query(score)
+    // return query.distinct('playerName', {useMasterKey: true})
+    return query.aggregate(options, {useMasterKey: true})
   },
   // Mmbs实例
   getMmbs () {

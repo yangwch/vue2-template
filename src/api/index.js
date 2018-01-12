@@ -17,6 +17,8 @@ export const saveGameScore = data => mmbs.save('GameScore', data)
 export const updateGameScore = data => mmbs.update('GameScore', data.id, data.data)
 /* 删除记录 */
 export const deleteGameScore = id => mmbs.delete('GameScore', id)
+/* 统计 */
+export const aggScore = () => mmbs.agg('GameScore', {group: {objectId: '$score'}})
 
 /* 获取用户菜单 */
-export const getUserMenus = () => fetch('/static/data/menus.json');
+export const getUserMenus = () => fetch('/static/data/menus.json')

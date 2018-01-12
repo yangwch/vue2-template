@@ -11,6 +11,7 @@
       :data="tableData"
       :empty-text="emptyText"
       highlight-current-row
+      @sort-change="onSortChange"
       @selection-change="onSelectionChange"
       @current-change="onCurrentChange">
       <slot name="columns"/>
@@ -92,7 +93,8 @@
         count: 0,
         currentPage: 1,
         emptyText: '暂无数据',
-        selection: null
+        selection: null,
+        orderOption: null
       }
     },
     components: {
@@ -110,26 +112,30 @@
       },
       /*  页码数量变化 */ 
       handleSizeChange(val) {
-        this.limit = val;
-        this.getApiData();
+        this.limit = val
+        this.getApiData()
       },
       /*  当前页变化事件 */ 
       handleCurrentChange(val) {
-        this.currentPage = val;
-        this.offset = (val - 1) * this.limit;
-        this.getApiData();
+        this.currentPage = val
+        this.offset = (val - 1) * this.limit
+        this.getApiData()
       },
       /*  行选中事件 */ 
       onCurrentChange(selection) {
-        this.selection = selection;
+        this.currentRow = selection
       },
       /*  当选择项变化时触发 */ 
       onSelectionChange(selection) {
-        this.selection = selection;
+        this.selection = selection
       },
-      /*  获取选中 */ 
+      /* 获取选中 */ 
       getSelection() {
-        return this.selection;
+        return this.selection
+      },
+      /* 获取当前行 */
+      getCurrentRow() {
+        return this.currentRow
       },
       /*  返回当前表格装载数据 */ 
       getTableData() {
@@ -141,6 +147,7 @@
         params.page = this.currentPage
         params.rows = this.limit
         params.params = this.params
+        params._order = this.orderOption
         this.emptyText = '加载中。。。',
         this.tableData = [],
         this.reload = false
@@ -151,7 +158,7 @@
         this.reload = true
       },
       /*  查询 */ 
-      search(params) {
+      search (params) {
         /*  参数 */ 
         for (var i in params) {
           this.params[i] = params[i];
@@ -159,8 +166,16 @@
         this.getApiData();
       },
       /*  取消选中 */ 
-      clearSelection() {
+      clearSelection () {
         this.$refs.table.clearSelection();
+      },
+      /* 排序变化 */
+      onSortChange (option) {
+        console.log(option)
+        let prop = option.prop.split('.')[option.prop.split('.').length - 1]
+        let orderOption = option.order === 'ascending' ? prop : '-' + prop
+        this.orderOption = orderOption
+        this.getApiData()
       }
     },
   }

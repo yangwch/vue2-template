@@ -16,6 +16,8 @@ let routerMode = 'hash'
 let appId = 'YTAPP'
 // mmbsURL: mmbs服务地址
 let mmbsURL = 'http://localhost:3080/mmbs'
+// masterKey
+let masterKey = '123456'
 // defPageSize: 默认分页数
 let defPageSize = 10
 
@@ -25,8 +27,9 @@ if (process.env.NODE_ENV == 'development') {
 
 export {
   baseUrl,
-  mmbsURL,
   routerMode,
   appId,
+  mmbsURL,
+  masterKey,
   defPageSize
 }

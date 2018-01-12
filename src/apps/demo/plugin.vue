@@ -2,6 +2,8 @@
   <div style="margin: 20px;">
     <h1>mmbs query</h1>
     <mmbs-list/>
+    <h2>aggregate</h2>
+    <aggregate/>
     <h1>i18n</h1>
     <!-- 多语言 -->
     <el-radio-group v-model="locale" @change="onLocaleChange">
@@ -151,9 +153,11 @@
 </template>
 <script>
 import mmbsList from './mmbsList'
+import aggregate from './aggregate'
 export default {
   components: {
-    mmbsList
+    mmbsList,
+    aggregate
   },
   data() {
     return {
