@@ -180,8 +180,4 @@ export default {
     text-decoration: underline;
     border-bottom-width: 50%;
   }
-  pre {
-    border: 1px dotted #ccc;
-    padding-top: 15px;
-  }
 </style>

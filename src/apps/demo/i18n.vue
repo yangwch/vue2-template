@@ -13,7 +13,7 @@
   </pre>
   output:
   <p>
-    <el-button type="default">{{$t('buttons.add')}}</el-button>
+    <el-button type="default" icon="el-icon-plus">{{$t('buttons.add')}}</el-button>
     <el-button type="default" icon="iconfont icon-edit">{{$t('buttons.edit')}}</el-button>
     <el-button type="danger" icon="iconfont icon-delete">{{$t('buttons.delete')}}</el-button>
   </p>
@@ -38,10 +38,10 @@
   <pre>
   $t('messages.hello', {msg: 'test msg 000'})
   </pre>
-  output:<br/><br/>
+  output:<br/>
   <p>
     {{$t('messages.hello', {msg: 'test msg 000'})}}
-  </p>
+  </p><br/>
 
   <h2>多元化 Pluralization</h2>
   <pre>
@@ -57,12 +57,12 @@
   </ol>
 
   <h2>货币</h2>
-  output:
   <pre>
     $n(100, 'currency', 'zh-CN')
     $n(100, 'currency', 'en-US')
     $n(100, 'currency', 'euro')
   </pre>
+  output:
   <ol>
     <li>人民币：{{$n(100, 'currency', 'zh-CN')}}</li>
     <li>美元：{{$n(100, 'currency', 'en-US')}}</li>
@@ -71,6 +71,19 @@
 
 </div>
 </template>
+<style scoped>
+  pre {
+    border: 1px dotted #ccc;
+    padding-top: 15px;
+  }
+  h2 {
+    margin-left: 1em;
+    line-height: 2.2em;
+    text-decoration: underline;
+    border-bottom-width: 50%;
+  }
+</style>
+
 <script>
 export default {
   data () {

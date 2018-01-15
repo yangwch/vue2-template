@@ -3,9 +3,9 @@
     <yt-list :title="title" search-field="playerName" :search-label="searchLabel" :search-api="searchApi" :search-params="formInline" ref="list">
       <!--操作按鈕-->
       <template slot="buttons">
-        <el-button type="default" @click="onCreate">创建</el-button>
-        <el-button type="default" @click="onEdit">修改</el-button>
-        <el-button type="danger" @click="onDel">删除</el-button>
+        <el-button type="default" @click="onCreate">{{$t('buttons.add')}}</el-button>
+        <el-button type="default" @click="onEdit">{{$t('buttons.edit')}}</el-button>
+        <el-button type="danger" @click="onDel">{{$t('buttons.delete')}}</el-button>
       </template>
      <template slot="search">
         <el-form :inline="true" :model="formInline" style="float:right" class="form-inline right">
@@ -19,7 +19,7 @@
             <el-input-number v-model="formInline.maxScore.value" :controls="false" :min="0" :max="100"></el-input-number>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="onSearch">查询</el-button>
+            <el-button type="primary" @click="onSearch">{{$t('buttons.search')}}</el-button>
           </el-form-item>
         </el-form>
       </template>
