@@ -9,9 +9,5 @@ export default {
     loading: '加载中。。。',
     hello: '你好，世界！ %{msg}',
     apple: '没有苹果 | 一个苹果 | {count} 个'
-  },
-  currency: {
-    style: 'currency', currency: 'CNY'
   }
-
 }
