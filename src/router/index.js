@@ -18,7 +18,6 @@ const routes = {
     },
     {
       path: '/main',
-      name: 'main',
       component: main,
       children: [
         {

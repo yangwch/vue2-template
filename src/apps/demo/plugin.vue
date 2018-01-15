@@ -2,64 +2,12 @@
   <div style="margin: 20px;">
     <h1>mmbs query</h1>
     <mmbs-list/>
+
     <h2>aggregate</h2>
     <aggregate/>
+
     <h1>i18n</h1>
-    <!-- 多语言 -->
-    <el-radio-group v-model="locale" @change="onLocaleChange">
-      <el-radio-button :label="item.value" v-for="(item,index) in langs" :key="index">{{item.text}}</el-radio-button>
-    </el-radio-group>
-    <pre>
-      const messagess = {
-        cn: {
-          messages: {
-            hello: '你好，世界！ %{msg}',
-            apple: '没有苹果 | 一个苹果 | {count} 个'
-          }
-        },
-        en: {
-          messages: {
-            hello: 'hello world %{msg}',
-            apple: 'no apples | one apple | {count} apples'
-          }
-        }
-      }
-    </pre>
-    <h2>basic</h2>
-    <pre>
-    $t('messages.hello', {msg: 'test msg 000'})
-    </pre>
-    output:<br/><br/>
-    <p>
-      {{$t('messages.hello', {msg: 'test msg 000'})}}
-    </p>
-
-    <h2>多元化 Pluralization</h2>
-    <pre>
-      $tc('messages.apple', 0)
-      $tc('messages.apple', 1)
-      $tc('messages.apple', 10 , {count: 10})
-    </pre>
-    output:
-    <ol>
-      <li>* {{$tc('messages.apple', 0)}}</li>
-      <li>* {{$tc('messages.apple', 1)}}</li>
-      <li>* {{$tc('messages.apple', 10 , {count: 10})}}</li>
-    </ol>
-
-    <h2>货币</h2>
-    output:
-    <pre>
-      $n(100, 'currency', 'zh-CN')
-      $n(100, 'currency', 'en-US')
-      $n(100, 'currency', 'euro')
-    </pre>
-    <ol>
-      <li>人民币：{{$n(100, 'currency', 'zh-CN')}}</li>
-      <li>美元：{{$n(100, 'currency', 'en-US')}}</li>
-      <li>欧元：{{$n(100, 'currency', 'euro')}}</li>
-    </ol>
-
+    <i18n/>
 
     <h1>ytList</h1>
     <yt-list :title="title" :search-field="searchField" :search-label="searchLabel" :search-api="searchApi" :params="{dataId: 2}" ref="list">
@@ -154,10 +102,12 @@
 <script>
 import mmbsList from './mmbsList'
 import aggregate from './aggregate'
+import i18n from './i18n'
 export default {
   components: {
     mmbsList,
-    aggregate
+    aggregate,
+    i18n
   },
   data() {
     return {
@@ -169,11 +119,6 @@ export default {
       searchField: "username",
       searchLabel: "输入用户名",
       title: "用户登录记录",
-      locale: this.$store && this.$store.state.locale,
-      langs: [
-        {value: 'cn', text: '中文'},
-        {value: 'en', text: 'English'}
-      ],
       searchApi: data => {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
@@ -218,11 +163,6 @@ export default {
     /** 刷新 */
     onSearch() {
       this.$refs.list.refresh(this.formInline);
-    },
-    /* 语言选择变化 */
-    onLocaleChange(value) {
-      this._i18n.locale = value;
-      this.$store.commit('saveLocale', value);
     }
   }
 };

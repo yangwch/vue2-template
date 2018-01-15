@@ -1,6 +1,6 @@
 <template>
   <div class="login_page fillcontain">
-    <div class="logo"><i class="iconfont icon-home"></i>智慧综合运维平台</span></div>
+    <div class="logo"><i class="iconfont icon-home"></i>智慧综合运维平台</div>
     <transition name="form-fade" mode="in-out">
       <section class="form_contianer" v-show="showLogin">
         <el-form :model="loginForm" :rules="rules" ref="loginForm">
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import {login, getUsers} from '@/api/index'
+  import {login} from '@/api/index'
   import {mapActions, mapState} from 'vuex'
   export default {
     data () {
@@ -46,7 +46,7 @@
       }
     },
     mounted () {
-      this.showLogin = true;
+      this.showLogin = true
     },
     computed: {
       ...mapState(['userInfo']),
@@ -66,31 +66,27 @@
             this.loading = true
             // 请求登录接口
             try {
-              let res = await login({ username: this.loginForm.username, password: this.loginForm.password });
-              console.log(res)
-              // let data = await getUsers()
-
+              let res = await login({ username: this.loginForm.username, password: this.loginForm.password })
               if (res) {
                 /* 将用户token本地缓存 */
-                this.saveUserInfo(res);
+                this.saveUserInfo(res)
                 this.$message({
                   type: 'success',
                   message: '登录成功'
-                });
-                
+                })
                 this.$router.push('main')
               } else {
                 this.$message({
                   type: 'error',
                   message: (res.error && res.error.message) || '用户名或密码错误'
-                });
+                })
                 this.loading = false
               }
             } catch (ex) {
               this.$message({
                   type: 'error',
                   message: '用户名或密码错误'
-                });
+                })
               this.loading = false
             }
           } else {
@@ -99,10 +95,10 @@
               title: '错误',
               message: '请输入正确的用户名密码',
               offset: 100
-            });
-            return false;
+            })
+            return false
           }
-        });
+        })
       },
       
       handleUserFocus: function (isFocus) {

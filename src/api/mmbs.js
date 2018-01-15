@@ -1,9 +1,8 @@
 import Mmbs from 'mmbs'
-import { mmbsURL, appId, defPageSize, masterKey } from '@/config/env'
+import { mmbsURL, appId, defPageSize } from '@/config/env'
 
 Mmbs.initialize(appId)
 Mmbs.serverURL = mmbsURL
-Mmbs.CoreManager.set('MASTER_KEY', masterKey)
 
 export default {
   /**
@@ -179,7 +178,8 @@ export default {
     var score = Mmbs.Object.extend(collectionName)
     var query = new Mmbs.Query(score)
     // return query.distinct('playerName', {useMasterKey: true})
-    return query.aggregate(options, {useMasterKey: true})
+    Mmbs.CoreManager.set('MASTER_KEY', '123456')
+    return query.aggregate(options)
   },
   // Mmbs实例
   getMmbs () {

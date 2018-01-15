@@ -47,7 +47,7 @@
       </template>
     </yt-list>
     <!-- dialog -->
-    <el-dialog title="编辑表单" :visible.sync="dialogFormVisible">
+    <yt-dialog title="编辑表单" :visible.sync="dialogFormVisible" size="tiny">
       <el-form :model="form" :rules="{
         playerName: {required: true, message: '必填'}
       }">
@@ -62,7 +62,7 @@
         <el-button @click="dialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="onSubmit">确 定</el-button>
       </div>
-    </el-dialog>
+    </yt-dialog>
   </div>
   
 </template>

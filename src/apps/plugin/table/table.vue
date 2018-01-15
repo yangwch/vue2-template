@@ -171,9 +171,8 @@
       },
       /* 排序变化 */
       onSortChange (option) {
-        console.log(option)
-        let prop = option.prop.split('.')[option.prop.split('.').length - 1]
-        let orderOption = option.order === 'ascending' ? prop : '-' + prop
+        let prop = (option.prop && option.prop.split('.')[option.prop.split('.').length - 1]) || ''
+        let orderOption = (prop && (option.order === 'ascending' ? prop : '-' + prop)) || ''
         this.orderOption = orderOption
         this.getApiData()
       }

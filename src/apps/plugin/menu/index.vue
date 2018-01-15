@@ -1,5 +1,5 @@
 <template>
-  <el-menu :default-active="$route.path" :theme="theme" router class="sub-menus">
+  <el-menu :default-active="$route.path" router class="sub-menus">
     <submenu :data="item" v-for="(item, index) in data" :key="item.id"></submenu>
   </el-menu>
 </template>
@@ -15,9 +15,6 @@
         default () {
           return []
         }
-      },
-      theme: {
-        type: String
       }
     }
   }
