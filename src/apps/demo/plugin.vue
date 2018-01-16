@@ -1,7 +1,22 @@
 <template>
   <div style="margin: 20px;">
+    <h1>mmbs List Component</h1>
+    <mmbs-list :options="{
+      title: '游戏列表',
+      collectionName: 'GameList',
+      add: true,
+      edit: true,
+      delete: true,
+      columns: [
+        {title: '名称', field: 'gameName', width: 150},
+        {title: '公司名称', field: 'compony', width: 200},
+        {title: '下载量', field: 'downloadNumber', type: 'number', width: 70, align: 'center'},
+        {title: '发布时间', field: 'publishDate', type: 'date', width: 150, format: 'YYYY-MM-DD'},
+        {title: '说明', field: 'remark', type: 'textarea'}
+      ]
+    }"/>
     <h1>mmbs query</h1>
-    <mmbs-list/>
+    <mmbs-list-demo/>
 
     <h2>aggregate</h2>
     <aggregate/>
@@ -100,12 +115,13 @@
   </div>
 </template>
 <script>
-import mmbsList from './mmbsList'
+import mmbsListDemo from './mmbsList'
 import aggregate from './aggregate'
+// i18n 例子
 import i18n from './i18n'
 export default {
   components: {
-    mmbsList,
+    mmbsListDemo,
     aggregate,
     i18n
   },
@@ -153,19 +169,19 @@ export default {
                   }
                 ]
               }
-            });
-          }, 2000);
-        });
+            })
+          }, 2000)
+        })
       }
-    };
+    }
   },
   methods: {
     /** 刷新 */
     onSearch() {
-      this.$refs.list.refresh(this.formInline);
+      this.$refs.list.refresh(this.formInline)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>

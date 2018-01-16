@@ -21,7 +21,7 @@
               <el-input v-model="formData.search" @keyup.enter.native="onSearch" :placeholder="searchLabel"></el-input>
               </el-form-item>
              <el-form-item>
-              <el-button type="primary" @click="onSearch">查询</el-button>
+              <el-button type="primary" @click="onSearch">{{$t("buttons.search")}}</el-button>
               </el-form-item>
           </el-form>
         </el-col>
@@ -135,7 +135,11 @@
     methods: {
       /* 获取选中 */ 
       getSelection () {
-        return this.$refs.tablePl.getSelection();
+        return this.$refs.tablePl.getSelection()
+      },
+      // 获取当前行
+      getCurrentRow () {
+        return this.$refs.tablePl.getCurrentRow()
       },
       /* 返回表格当前的数据 */ 
       getTableData () {

@@ -1,7 +1,7 @@
 <template>
 <div>
   <!-- 多语言 -->
-  <el-radio-group v-model="locale" @change="onLocaleChange">
+  <el-radio-group v-model="locale" @change="onLocaleChange" class="locale-buttons">
     <el-radio-button :label="item.value" v-for="(item,index) in langs" :key="index">{{item.text}}</el-radio-button>
   </el-radio-group>
   <h2>按钮文字</h2>
@@ -81,6 +81,11 @@
     line-height: 2.2em;
     text-decoration: underline;
     border-bottom-width: 50%;
+  }
+  .locale-buttons {
+    position: fixed;
+    top: 10px;
+    right: 10px;
   }
 </style>
 

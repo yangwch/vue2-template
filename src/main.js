@@ -9,11 +9,13 @@ import VueI18n from 'vue-i18n'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import langOptions from '@/apps/i18n'
+import components from '@/apps/components'
 
 Vue.config.productionTip = false;
 Vue.use(VueI18n)
 Vue.use(ElementUI)
 Vue.use(plugin)
+Vue.use(components)
 
 const i18n = new VueI18n(langOptions)
 

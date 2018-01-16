@@ -10,12 +10,8 @@ import ytMenu from './menu/index'
 import ytMap from './map/map'
 import ytDialog from './dialog/dialog'
 import ytCombotree from './combotree/index'
-/* 编辑器 */
-import { quillEditor } from 'vue-quill-editor'
 /* pdf */
 import ytPdf from './pdf/pdf'
-/* echarts */
-import ytEcharts from './echarts/echarts'
 /* 扩展方法 */
 import * as mUtils from '@/config/mUtils'
 
@@ -23,13 +19,11 @@ var plugin = {
   ytTreeGrid: ytTreeGrid,
   ytTable: ytTable,
   ytList: ytList,
-  quillEditor: quillEditor,
   ytPdf: ytPdf,
   ytSubmenu: ytSubmenu,
   ytMenu: ytMenu,
   ytMap: ytMap,
   ytDialog,
-  ytEcharts,
   ytCombotree: ytCombotree
 }
 export default {
