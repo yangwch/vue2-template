@@ -3,9 +3,10 @@ import Vuex from 'vuex'
 import {getStore, setStore} from '@/config/mUtils'
 
 Vue.use(Vuex)
+let userInfo = getStore('userInfo')
 
 const state = {
-  userInfo: getStore('userInfo'),
+  userInfo: userInfo && JSON.parse(userInfo),
   tabState: {},
   locale: getStore('locale') || 'cn'
 }

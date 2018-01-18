@@ -7,17 +7,18 @@
         </a>
       </h1>
       <nav>
-        <el-menu :default-active="activeIndex" class="el-menu-custom" mode="horizontal" @select="handleSelect">
-          <el-menu-item index="search"><el-input placeholder="请输入内容" suffix-icon="el-icon-search"></el-input></el-menu-item>
-          <el-menu-item index="1">处理中心</el-menu-item>
-          <el-submenu index="2">
-            <template slot="title">我的工作台</template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
-          </el-submenu>
-          <el-menu-item index="3"><a href="">系统管理</a></el-menu-item>
-        </el-menu>
+        <el-dropdown @command="onUserCommand">
+          <span class="el-dropdown-link">
+            <i class="iconfont icon-my user-icon"></i>
+            {{userInfo.username}}
+            <i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item><router-link to="/main">首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页</router-link></el-dropdown-item>
+            <el-dropdown-item command="changepass">修改密码</el-dropdown-item>
+            <el-dropdown-item command="logout" divided>登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </nav>
     </el-header>
     <el-container>
@@ -25,34 +26,66 @@
         <yt-menu :data="menus"></yt-menu>
       </el-aside>
       <el-main>
-        <router-view></router-view>
+        <transition name="el-zoom-in-top" mode="out-in">
+          <router-view></router-view>
+        </transition>
       </el-main>
     </el-container>
   </el-container>
 </template>
 <script>
   import {getUserMenus} from '@/api/index'
+  import {mapState} from 'vuex'
   export default {
     data () {
       return {
-        activeIndex: '1',
+        activeIndex: '0',
         menus: []
       };
     },
+    computed: mapState(['userInfo', 'locale']),
     created () {
-      this.getData();
+      this.getData()
     },
     methods: {
-      handleSelect () {
-        
-      },
+      /**
+       * 获取用户信息及菜单信息
+       */
       async getData () {
-        let data = await getUserMenus();
-        this.menus = data && data.result;
+        let data = await getUserMenus()
+        this.menus = data && data.result
+      },
+      /**
+       * 下拉菜单点击事件
+       */
+      onUserCommand (command) {
+        if (command === 'changepass') {
+          this.$message('修改密码')
+        } else if (command === 'logout') {
+          this.$message('登出')
+        }
       }
     }
   }
 </script>
 <style lang="less">
   @import './style.less';
+  /* 标题栏样式 */
+  .el-header {
+    .user-icon {
+      font-size: 35px;
+      vertical-align: sub;
+    }
+    .el-dropdown {
+      line-height: .5;
+      .el-dropdown-link {
+        font-size: 20px;
+      }
+    }
+  }
+  /* 主布局 */
+  .el-main {
+    padding: 0;
+    text-align: left;
+  }
 </style>

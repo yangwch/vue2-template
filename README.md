@@ -42,8 +42,15 @@ npm run build --report
    --api    webapi请求
    --apps   页面
     --components 应用级组件
+      --main     主页面
+      --mmbsList mmbs列表组件（建议）
     --views 路由页面
+    --i18n  i18n多语言配置
+    --plugin 通用共享组件
     --demo  测试页面
+      --i18n.vue    多语言设置demo
+      --plugin.vue  组件示例demo
+      --mmbsList.vue 列表页示例（不建议）
    --config 配置及通用脚本
    --router 路由配置
    --store  vuex

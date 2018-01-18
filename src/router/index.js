@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import { routerMode } from './../config/env'
+import configRoutes from './config'
 const login = r => require.ensure([], () => r(require('@/apps/views/login')), 'login')
 const main = r => require.ensure([], () => r(require('@/apps/components/main')), 'main')
 const demoPlugin = r => require.ensure([], () => r(require('@/apps/demo/plugin')), 'plugin')
@@ -8,7 +9,16 @@ const home = r => require.ensure([], () => r(require('@/apps/views/home')), 'hom
 
 Vue.use(Router)
 
-const routes = {
+let mainRoutes = [
+  {
+    path: '/',
+    name: 'home',
+    component: home
+  }
+]
+mainRoutes = mainRoutes.concat(configRoutes)
+
+let routes = {
   mode: routerMode,
   routes: [
     {
@@ -19,13 +29,7 @@ const routes = {
     {
       path: '/main',
       component: main,
-      children: [
-        {
-          path: '/',
-          name: 'home',
-          component: home
-        }
-      ]
+      children: mainRoutes
     }
   ]
 }

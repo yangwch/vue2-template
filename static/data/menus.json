@@ -1,1 +1,85 @@
-{"result":[{"id":15,"text":"首页","iconCls":null,"selected":false,"state":null,"level":2,"attributes":{"url":"/main","icon":null},"children":[],"parent":1,"sort":1},{"id":40,"text":"待办事项","iconCls":null,"selected":false,"state":"closed","level":2,"attributes":{"url":"","icon":"iconfont icon-all"},"children":[{"id":42,"text":"工单管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/backlogEvent/workOrderManage","icon":""},"children":[],"parent":40,"sort":2}],"parent":1,"sort":1},{"id":16,"text":"桥梁档案管理","iconCls":null,"selected":false,"state":"closed","level":2,"attributes":{"url":"","icon":"iconfont icon-all"},"children":[{"id":36,"text":"基础信息管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/bridge/baseInfo","icon":""},"children":[],"parent":16,"sort":1}],"parent":1,"sort":2},{"id":48,"text":"桥梁技术状况评估","iconCls":null,"selected":false,"state":"closed","level":2,"attributes":{"url":"","icon":"iconfont icon-all"},"children":[{"id":49,"text":"BCI评估","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/technologyStatusAssessment/BCIAssessment","icon":""},"children":[],"parent":48,"sort":1}],"parent":1,"sort":2},{"id":19,"text":"综合运维管理","iconCls":null,"selected":false,"state":"closed","level":2,"attributes":{"url":"","icon":"iconfont icon-all"},"children":[{"id":37,"text":"桥梁检查项目管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/bridgeDailyWorkManage/inspectionProjectManage","icon":""},"children":[],"parent":19,"sort":1},{"id":22,"text":"巡检计划管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/bridgeDailyWorkManage/checkingPlanManage","icon":""},"children":[],"parent":19,"sort":2},{"id":23,"text":"巡检工单管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/bridgeDailyWorkManage/checkingOrderManage","icon":""},"children":[],"parent":19,"sort":3},{"id":39,"text":"技检工单管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/bridgeDailyWorkManage/technicalListManage","icon":""},"children":[],"parent":19,"sort":4},{"id":24,"text":"维修任务书管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/bridgeDailyWorkManage/maintenanceOrderManage","icon":""},"children":[],"parent":19,"sort":5},{"id":25,"text":"资源库管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/bridgeDailyWorkManage/resourceManage","icon":""},"children":[],"parent":19,"sort":6},{"id":26,"text":"运维人员绩效管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/bridgeDailyWorkManage/devOpsPerformanceManage","icon":""},"children":[],"parent":19,"sort":7},{"id":27,"text":"培训管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/bridgeDailyWorkManage/trainingManage","icon":""},"children":[],"parent":19,"sort":8},{"id":28,"text":"专家库管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/bridgeDailyWorkManage/expertDatabaseManage","icon":""},"children":[],"parent":19,"sort":9},{"id":43,"text":"桥梁运维统计","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/bridgeDailyWorkManage/bridgeStatistics","icon":""},"children":[],"parent":19,"sort":10},{"id":47,"text":"运维详情统计","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/bridgeDailyWorkManage/bridgeDetailStatistics","icon":""},"children":[],"parent":19,"sort":11}],"parent":1,"sort":3},{"id":20,"text":"应急抢险管理","iconCls":null,"selected":false,"state":"closed","level":2,"attributes":{"url":"","icon":"iconfont icon-all"},"children":[{"id":29,"text":"应急总结管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/emergencySystem/summaryManage","icon":""},"children":[],"parent":20,"sort":1},{"id":30,"text":"应急预案管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/emergencySystem/guideManage","icon":""},"children":[],"parent":20,"sort":2},{"id":31,"text":"应急物资管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/emergencySystem/resourceManage","icon":""},"children":[],"parent":20,"sort":3},{"id":32,"text":"应急指挥平台","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/emergency/commandManage","icon":""},"children":[],"parent":20,"sort":4}],"parent":1,"sort":4},{"id":21,"text":"实时在线监测","iconCls":null,"selected":false,"state":"closed","level":2,"attributes":{"url":"","icon":"iconfont icon-all"},"children":[{"id":33,"text":"结构实时监测","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/monitorSystem/liveManage","icon":""},"children":[],"parent":21,"sort":1},{"id":34,"text":"结构历史监测","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/monitorSystem/historyManage","icon":""},"children":[],"parent":21,"sort":2},{"id":35,"text":"监测报警统计","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/monitorSystem/statisticManage","icon":""},"children":[],"parent":21,"sort":3}],"parent":1,"sort":5},{"id":2,"text":"系统管理","iconCls":null,"selected":false,"state":"closed","level":2,"attributes":{"url":"","icon":"iconfont icon-all"},"children":[{"id":3,"text":"组织机构管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/configSystem/organizationInfo","icon":""},"children":[],"parent":2,"sort":1},{"id":4,"text":"职位信息管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/configSystem/positionManage","icon":""},"children":[],"parent":2,"sort":2},{"id":5,"text":"角色权限管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/configSystem/roleInfo","icon":""},"children":[],"parent":2,"sort":3},{"id":6,"text":"账户信息管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/configSystem/userInfo","icon":""},"children":[],"parent":2,"sort":4},{"id":7,"text":"人员信息管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/configSystem/personalManage","icon":""},"children":[],"parent":2,"sort":5},{"id":8,"text":"系统模块管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/configSystem/menuInfo","icon":""},"children":[],"parent":2,"sort":6},{"id":9,"text":"网格信息管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/configSystem/gridInfoManage","icon":""},"children":[],"parent":2,"sort":7},{"id":10,"text":"数据字典管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/configSystem/systemDictionaryManage","icon":""},"children":[],"parent":2,"sort":8},{"id":13,"text":"视频配置管理","iconCls":null,"selected":false,"state":null,"level":3,"attributes":{"url":"/configSystem/videoConfigurationManage","icon":""},"children":[],"parent":2,"sort":11}],"parent":1,"sort":6}],"targetUrl":null,"success":true,"error":null,"unAuthorizedRequest":false,"__abp":true}
+{
+  "result": [
+    {
+      "id": 15,
+      "text": "首页",
+      "iconCls": null,
+      "selected": false,
+      "state": null,
+      "level": 2,
+      "attributes": {
+        "url": "/main",
+        "icon": null
+      },
+      "children": [],
+      "parent": 1,
+      "sort": 1
+    },
+    {
+      "id": 2,
+      "text": "系统管理",
+      "iconCls": null,
+      "selected": false,
+      "state": "closed",
+      "level": 2,
+      "attributes": {
+        "url": "",
+        "icon": "iconfont icon-all"
+      },
+      "children": [
+        {
+          "id": 5,
+          "text": "角色权限管理",
+          "iconCls": null,
+          "selected": false,
+          "state": null,
+          "level": 3,
+          "attributes": {
+            "url": "/config/role",
+            "icon": ""
+          },
+          "children": [],
+          "parent": 2,
+          "sort": 3
+        },
+        {
+          "id": 6,
+          "text": "账户信息管理",
+          "iconCls": null,
+          "selected": false,
+          "state": null,
+          "level": 3,
+          "attributes": {
+            "url": "/config/user",
+            "icon": ""
+          },
+          "children": [],
+          "parent": 2,
+          "sort": 4
+        },
+        {
+          "id": 7,
+          "text": "菜单管理",
+          "iconCls": null,
+          "selected": false,
+          "state": null,
+          "level": 3,
+          "attributes": {
+            "url": "/config/menu",
+            "icon": ""
+          },
+          "children": [],
+          "parent": 2,
+          "sort": 5
+        }
+      ],
+      "parent": 1,
+      "sort": 6
+    }
+  ],
+  "targetUrl": null,
+  "success": true,
+  "error": null,
+  "unAuthorizedRequest": false,
+  "__abp": true
+}
