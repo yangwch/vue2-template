@@ -1,28 +1,30 @@
 <template>
   <div>
-    <yt-list :title="options.title" search-field="playerName" :search-label="searchLabel" :search-api="searchApi" ref="list">
+    <yt-list :title="options.title" :params="options.query || {}" :search-api="searchApi" ref="list">
       <!--操作按鈕-->
-      <template slot="buttons">
+      <el-button-group slot="buttons">
         <el-button type="default" @click="onCreate" v-if="options && options.add == true">{{$t('buttons.add')}}</el-button>
         <el-button type="default" @click="onEdit" v-if="options && options.edit == true">{{$t('buttons.edit')}}</el-button>
         <el-button type="danger" @click="onDel" v-if="options && options.delete == true">{{$t('buttons.delete')}}</el-button>
-      </template>
-      <!-- <template slot="search">
-        <el-form :inline="true" :model="formInline" style="float:right" class="form-inline right">
-          <el-form-item label="用户姓名">
-            <el-input v-model="formInline.playerName" placeholder="用户姓名"></el-input>
-          </el-form-item>
-          <el-form-item label="大于分数">
-            <el-input-number v-model="formInline.minScore.value" :controls="false" :min="0" :max="100"></el-input-number>
-          </el-form-item>
-          <el-form-item label="小于分数">
-            <el-input-number v-model="formInline.maxScore.value" :controls="false" :min="0" :max="100"></el-input-number>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="onSearch">{{$t('buttons.search')}}</el-button>
-          </el-form-item>
+      </el-button-group>
+      <!-- 默认查询 -->
+      <template slot="search">
+        <el-form :inline="true" :model="formInline" style="float:right" class="form-inline right" v-if="options.search != false">
+          <!-- 若有默认查询字段名，则显示默认条件 -->
+          <template v-if="options.searchField">
+            <el-form-item>
+              <el-input v-model="formInline[options.searchField]" :placeholder="options.searchLabel || ''"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="onSearch" icon="el-icon-search">{{$t('buttons.search')}}</el-button>
+              <el-popover placement="bottom-end" trigger="click" effect="light" ref="filter">
+                <filter-plugin :columns="options.columns" @onFilter="onFilter"/>
+              </el-popover>
+              <el-button type="primary" icon="iconfont icon-filter" v-popover:filter>{{$t('buttons.filter')}}</el-button>
+            </el-form-item>
+          </template>
         </el-form>
-      </template> -->
+      </template>
       <!--数据列表 显示的列-->
       <template slot="columns">
         <el-table-column
@@ -41,10 +43,8 @@
       </template>
     </yt-list>
     <!-- dialog -->
-    <yt-dialog title="编辑表单" :visible.sync="dialogFormVisible">
-      <el-form :model="form" :rules="{
-        playerName: {required: true, message: '必填'}
-      }">
+    <yt-dialog :title="dialogTitle" :visible.sync="dialogFormVisible">
+      <el-form :model="form" class="mmbs-form">
         <template v-for="(item, index) in (options.columns || [])">
           <el-form-item v-if="item.edit !== false" :label="item.title" :label-width="formLabelWidth" :key="index">
             <!-- 字符串，text/textarea -->
@@ -93,10 +93,20 @@
   </div>
   
 </template>
+<style>
+form.mmbs-form .el-input-number input {
+  text-align: left;
+}
+</style>
+
 <script>
   import { commonApi } from '@/api/index'
+  import filterPlugin from './filter'
   export default {
     name: 'mmbsList',
+    components: {
+      filterPlugin
+    },
     props: {
       options: {
         type: Object,
@@ -113,7 +123,11 @@
             // 删除功能
             delete: true,
             // 显示列
-            columns: []
+            columns: [],
+            // 是否查询，若为false则不显示查询
+            search: true,
+            searchLabel: '',
+            searchField: ''
           }
         }
       }
@@ -121,22 +135,11 @@
     data () {
       return {
         formLabelWidth: '120px',
-        formInline: {
-          playerName: '',
-          minScore: {
-            type: 'greaterThan',
-            field: 'score',
-            value: 0
-          },
-          maxScore: {
-            type: 'lessThan',
-            field: 'score',
-            value: 100
-          }
-        },
+        formInline: { },
         form: { },
         objectId: '',
         dialogFormVisible: false,
+        dialogTitle: '',
         searchField: this.options.searchField || 'keyword',
         searchLabel: this.options.searchField || '关键字',
         searchApi: (collectionName => {
@@ -147,14 +150,14 @@
     methods: {
       /** 刷新 */
       onSearch () {
-        this.$refs.list.onSearch()
+        this.$refs.list.onSearch(this.formInline)
       },
       /* 创建 */
       onCreate () {
         this.objectId = ''
-        this.form = {
-        }
+        this.form = { }
         this.dialogFormVisible = true
+        this.dialogTitle = this.$t('buttons.add')
       },
       // 列表格式化
       onFormatter (type, value, colItem) {
@@ -163,6 +166,7 @@
         }
         return value
       },
+      // 提交表单
       onSubmit () {
         let api;
         if (this.objectId) {
@@ -189,14 +193,21 @@
           //  this.form[column.field] = row.attributes[column.field]
         }
       },
+      /**
+       * 修改
+       */
       onEdit () {
         let row = this.$refs.list.getCurrentRow()
         if (row) {
           this.objectId = row.id
           this.initEditForm(row)
           this.dialogFormVisible = true
+          this.dialogTitle = this.$t('buttons.edit')
         }
       },
+      /**
+       * 删除
+       */
       onDel () {
         let row = this.$refs.list.getCurrentRow()
         if (row) {
@@ -209,6 +220,12 @@
             })
           }).catch(ex => {})
         }
+      },
+      /**
+       * 高级查询
+       */
+      onFilter (params) {
+        this.$refs.list.onSearch(params)
       }
     }
   }

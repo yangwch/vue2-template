@@ -88,6 +88,7 @@ export default {
    */
   query (collectionName, options = {page: 1, rows: defPageSize, params: {}, _order: '-createdAt'}) {
     console.log(options)
+    debugger
     var score = Mmbs.Object.extend(collectionName)
     var query = new Mmbs.Query(score)
     /* 排序 */
@@ -102,7 +103,7 @@ export default {
       paramNames.map(item => {
         let val = options.params[item]
         if (val && typeof val === 'string') {
-          query.matches(item, new RegExp(val))
+          query.contains(item, val) // matches(item, new RegExp(val))
         } else if (val && typeof val === 'object') {
           query[val.type] && query[val.type](val.field || item, val.value)
         }

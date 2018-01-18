@@ -13,7 +13,16 @@
         {title: '下载量', field: 'downloadNumber', type: 'number', width: 70, align: 'center'},
         {title: '发布时间', field: 'publishDate', type: 'date', width: 150, format: 'YYYY-MM-DD'},
         {title: '说明', field: 'remark', type: 'textarea'}
-      ]
+      ],
+      query: {
+        downloadNumber: {
+          type: 'exists',
+          value: true
+        }
+      },
+      search: true,
+      searchField: 'gameName',
+      searchLabel: '输入游戏名称'
     }"/>
     <h1>mmbs query</h1>
     <mmbs-list-demo/>

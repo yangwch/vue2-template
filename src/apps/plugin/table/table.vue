@@ -94,7 +94,8 @@
         currentPage: 1,
         emptyText: '暂无数据',
         selection: null,
-        orderOption: null
+        orderOption: null,
+        tmpParams: {}
       }
     },
     components: {
@@ -142,13 +143,13 @@
         return this.tableData;
       },
       /*  获取数据 */ 
-      async getApiData() {
+      async getApiData(paramsData) {
         var params = {} // this.params
         params.page = this.currentPage
         params.rows = this.limit
-        params.params = this.params
+        params.params = paramsData || Object.assign({}, this.params, this.tmpParams)
         params._order = this.orderOption
-        this.emptyText = '加载中。。。',
+        this.emptyText = '加载中。。。'
         this.tableData = [],
         this.reload = false
         const result = await this.searchApi(params)
@@ -159,15 +160,13 @@
       },
       /*  查询 */ 
       search (params) {
-        /*  参数 */ 
-        for (var i in params) {
-          this.params[i] = params[i];
-        }
-        this.getApiData();
+        this.tmpParams = params || {}
+        let paramsData = Object.assign({}, this.params, params)
+        this.getApiData(paramsData);
       },
       /*  取消选中 */ 
       clearSelection () {
-        this.$refs.table.clearSelection();
+        this.$refs.table.clearSelection()
       },
       /* 排序变化 */
       onSortChange (option) {

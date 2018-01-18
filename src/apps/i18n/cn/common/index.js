@@ -3,7 +3,8 @@ export default {
     add: '添加',
     edit: '修改',
     delete: '删除',
-    search: '查询'
+    search: '查询',
+    filter: '过滤'
   },
   messages: {
     loading: '加载中。。。',

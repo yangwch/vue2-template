@@ -3,7 +3,8 @@ export default {
     add: 'Add',
     edit: 'Modify',
     delete: 'Delete',
-    search: 'Search'
+    search: 'Search',
+    filter: 'Filter'
   },
   messages: {
     loading: 'loading...',
