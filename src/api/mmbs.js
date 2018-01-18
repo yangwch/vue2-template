@@ -87,8 +87,6 @@ export default {
    * @param options.params {Object} - 参数，示例：{playerName: 'Stan', minScore: {value: 60, field: 'score', type: 'greaterThan'}} 
    */
   query (collectionName, options = {page: 1, rows: defPageSize, params: {}, _order: '-createdAt'}) {
-    console.log(options)
-    debugger
     var score = Mmbs.Object.extend(collectionName)
     var query = new Mmbs.Query(score)
     /* 排序 */

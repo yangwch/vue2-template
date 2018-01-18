@@ -100,6 +100,7 @@ export default {
     onClear () {
       this.filters = []
       this.onAddRow()
+      this.onFilter()
     },
     /**
      * 过滤
@@ -152,6 +153,7 @@ export default {
         row.type_list = this.fieldTypes[fieldType]
         row.fieldType = fieldType
         row.type = ''
+        row.value = null
       }
     }
   }
