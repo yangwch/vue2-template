@@ -9,20 +9,22 @@
       </el-button-group>
       <!-- 默认查询 -->
       <template slot="search">
-        <el-form :inline="true" :model="formInline" style="float:right" class="form-inline right" v-if="options.search != false">
+        <el-form :inline="true" :model="formInline" class="form-inline right" v-if="options.search != false">
           <!-- 若有默认查询字段名，则显示默认条件 -->
           <template v-if="options.searchField">
             <el-form-item>
-              <el-input v-model="formInline[options.searchField]" :placeholder="options.searchLabel || ''"></el-input>
+              <el-input v-model="formInline[options.searchField]" :placeholder="options.searchLabel || ''" @keyup.enter.native="() => { return false }"></el-input>
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="onSearch" icon="el-icon-search">{{$t('buttons.search')}}</el-button>
-              <el-popover placement="bottom-end" trigger="click" effect="light" ref="filter">
-                <filter-plugin :columns="options.columns" @onFilter="onFilter"/>
-              </el-popover>
-              <el-button type="primary" icon="iconfont icon-filter" v-popover:filter>{{$t('buttons.filter')}}</el-button>
             </el-form-item>
           </template>
+          <el-form-item>
+            <el-popover placement="bottom-end" trigger="click" effect="light" ref="filter">
+              <filter-plugin :columns="options.columns" @onFilter="onFilter"/>
+            </el-popover>
+            <el-button type="primary" icon="iconfont icon-filter" v-popover:filter>{{$t('buttons.filter')}}</el-button>
+          </el-form-item>
         </el-form>
       </template>
       <!--数据列表 显示的列-->
