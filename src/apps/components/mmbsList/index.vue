@@ -113,6 +113,18 @@ form.mmbs-form .el-input-number input {
       filterPlugin
     },
     props: {
+      /**
+       * 配置选项
+       * @param title {String} 标题
+       * @param collectionName {String} 集合名称
+       * @param add {Boolean} 是否有添加功能
+       * @param edit {Boolean} 是否有修改功能
+       * @param delete {Boolean} 是否有删除功能
+       * @param columns {Array} 要显示的列
+       * @param search {Boolean} 是否带默认查询
+       * @param searchLabel {String} 默认查询标签
+       * @param searchField {String} 默认查询字段名
+       */
       options: {
         type: Object,
         default () {
