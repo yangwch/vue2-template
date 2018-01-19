@@ -10,7 +10,7 @@
         <el-dropdown @command="onUserCommand">
           <span class="el-dropdown-link">
             <i class="iconfont icon-my user-icon"></i>
-            {{userInfo.username}}
+            {{userInfo.username || (userInfo.attributes && userInfo.attributes.username)}}
             <i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">

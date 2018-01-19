@@ -1,6 +1,6 @@
 <template>
   <div class="login_page fillcontain">
-    <div class="logo"><i class="iconfont icon-home"></i>智慧综合运维平台</div>
+    <div class="logo"><i class="iconfont icon-home"></i>{{systemName}}</div>
     <transition name="form-fade" mode="in-out">
       <section class="form_contianer" v-show="showLogin">
         <el-form :model="loginForm" :rules="rules" ref="loginForm">
@@ -23,9 +23,11 @@
 <script>
   import {login} from '@/api/index'
   import {mapActions, mapState} from 'vuex'
+  import {systemName} from '@/config/env'
   export default {
     data () {
       return {
+        systemName: systemName,
         // 定义变量:输入框获取焦点
         focusUserName: false,
         focusPassword: false,

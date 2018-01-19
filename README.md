@@ -52,6 +52,15 @@ npm run build --report
       --plugin.vue  组件示例demo
       --mmbsList.vue 列表页示例（不建议）
    --config 配置及通用脚本
+    --env   全局配置（
+                      * baseUrl: api域名地址
+                      * routerMode: 路由模式
+                      * appId: 应用名
+                      * mmbsURL: mmbs服务地址
+                      * defPageSize: 默认分页数
+                      * locale: 默认语言
+                      * systemName: 系统名称
+                    )
    --router 路由配置
    --store  vuex
    --style  样式文件

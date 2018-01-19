@@ -2,11 +2,14 @@
   <div>
     <yt-list :title="options.title" :params="options.query || {}" :search-api="searchApi" ref="list">
       <!--操作按鈕-->
-      <el-button-group slot="buttons">
+      <template slot="buttons">
+        <el-button-group>
         <el-button type="default" @click="onCreate" v-if="options && options.add == true">{{$t('buttons.add')}}</el-button>
         <el-button type="default" @click="onEdit" v-if="options && options.edit == true">{{$t('buttons.edit')}}</el-button>
         <el-button type="danger" @click="onDel" v-if="options && options.delete == true">{{$t('buttons.delete')}}</el-button>
-      </el-button-group>
+        </el-button-group>
+        <slot name="buttons"></slot>
+      </template>
       <!-- 默认查询 -->
       <template slot="search">
         <el-form :inline="true" :model="formInline" class="form-inline right" v-if="options.search != false">
@@ -228,6 +231,13 @@ form.mmbs-form .el-input-number input {
        */
       onFilter (params) {
         this.$refs.list.onSearch(params)
+      },
+      /**
+       * @public
+       * 获取当前选中行
+       */
+      getCurrentRow () {
+        return this.$refs.list.getCurrentRow()
       }
     }
   }

@@ -7,6 +7,7 @@
  * mmbsURL: mmbs服务地址
  * defPageSize: 默认分页数
  * locale: 默认语言
+ * systemName: 系统名称
  * 
  */
 // baseUrl: api域名地址
@@ -23,6 +24,7 @@ let mmbsURL = 'http://localhost:3080/mmbs'
 let defPageSize = 10
 // 默认语言
 let locale = 'cn'
+let systemName = '元图智慧管理平台'
 
 if (process.env.NODE_ENV == 'development') {
   baseUrl = '';
@@ -35,5 +37,6 @@ export {
   mmbsURL,
   masterKey,
   defPageSize,
-  locale
+  locale,
+  systemName
 }

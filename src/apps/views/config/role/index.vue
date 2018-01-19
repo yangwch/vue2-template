@@ -14,7 +14,11 @@
     search: true,
     searchField: 'name',
     searchLabel: '输入名称'
-  }"/>
+  }">
+    <template slot="buttons">
+      <el-button>授权</el-button>
+    </template>
+  </mmbs-list>
 </template>
 <style lang="less" scoped>
 </style>

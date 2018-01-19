@@ -10,8 +10,10 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import langOptions from '@/apps/i18n'
 import components from '@/apps/components'
+import {systemName} from '@/config/env'
 
-Vue.config.productionTip = false;
+document.title = systemName
+Vue.config.productionTip = false
 Vue.use(VueI18n)
 Vue.use(ElementUI)
 Vue.use(plugin)
